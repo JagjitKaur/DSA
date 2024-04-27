@@ -1,0 +1,30 @@
+function letterCasePermutation(str) {
+    let result = [];
+    function helper(i,slate) {
+        //base Case
+        if(i>=str.length) {
+            result.push(slate.join(''));
+            return;
+        }
+        //logic
+        if(isNumber(str[i])) {
+            slate.push(str[i]);
+            helper(i+1,slate);
+            slate.pop();
+        }
+        else {
+            slate.push(str[i].toLowerCase());
+            helper(i+1,slate);
+            slate.pop();
+            slate.push(str[i].toUpperCase());
+            helper(i+1,slate);
+            slate.pop();
+        }
+
+    }
+    helper(0,[]);
+    return result;
+}
+letterCasePermutation("a1b2");
+Output: ["a1b2","a1B2","A1b2","A1B2"]
+//https://leetcode.com/problems/letter-case-permutation/description/
